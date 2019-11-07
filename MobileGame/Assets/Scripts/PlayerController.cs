@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     Vector2 position;
     float horizontal;
     float vertical;
+    float velocity = 3f;
     void Start()
     {
         position = transform.position;
@@ -28,16 +29,15 @@ public class PlayerController : MonoBehaviour
             moveVertical();
         }
         
-       
         transform.position = position;
 
     }
    void moveHorizontal()
     {
-        position.x = position.x + 2f * horizontal * Time.deltaTime;
+        position.x = position.x + velocity * horizontal * Time.deltaTime;
     }
     void moveVertical()
     {
-        position.y = position.y + 2f * vertical * Time.deltaTime;
+        position.y = position.y + velocity * vertical * Time.deltaTime;
     }
 }
