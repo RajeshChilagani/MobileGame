@@ -6,15 +6,13 @@ public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
     Vector2 position;
-    float velocity = 3f;
     Rigidbody2D playerRigidBody;
     Vector2 oldposition, newposition;
-    bool ismoving;
+    public Animator animator;
     void Start()
     {
         playerRigidBody = GetComponent<Rigidbody2D>();
         playerRigidBody.position = newposition;
-        ismoving = false;
 
     }
 
@@ -34,7 +32,14 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        playerRigidBody.position = Vector2.Lerp(playerRigidBody.position, newposition, Time.deltaTime*2);
-       
+        playerRigidBody.position = Vector2.MoveTowards(playerRigidBody.position, newposition, Time.deltaTime*2);
+        if(playerRigidBody.position==newposition)
+        {
+            animator.SetBool("ismoving", false);
+        }
+        else
+        {
+            animator.SetBool("ismoving", true);
+        }
     }
 }
