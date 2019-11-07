@@ -6,38 +6,35 @@ public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
     Vector2 position;
-    float horizontal;
-    float vertical;
     float velocity = 3f;
+    Rigidbody2D playerRigidBody;
+    Vector2 oldposition, newposition;
+    bool ismoving;
     void Start()
     {
-        position = transform.position;
-       
+        playerRigidBody = GetComponent<Rigidbody2D>();
+        playerRigidBody.position = newposition;
+        ismoving = false;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        horizontal = Input.GetAxis("Horizontal");
-        vertical = Input.GetAxis("Vertical");
-        if (horizontal>0 || horizontal<0)
+      
+        if(Input.GetMouseButtonDown(0))
         {
-            moveHorizontal();
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if(Physics.Raycast(ray,out hit))
+            {
+                if (hit.collider)
+                {
+                   newposition = hit.collider.transform.position;
+                }
+            }
         }
-       else if(vertical>0 || vertical< 0)
-        {
-            moveVertical();
-        }
-        
-        transform.position = position;
-
-    }
-   void moveHorizontal()
-    {
-        position.x = position.x + velocity * horizontal * Time.deltaTime;
-    }
-    void moveVertical()
-    {
-        position.y = position.y + velocity * vertical * Time.deltaTime;
+        playerRigidBody.position = Vector2.Lerp(playerRigidBody.position, newposition, Time.deltaTime*2);
+       
     }
 }
