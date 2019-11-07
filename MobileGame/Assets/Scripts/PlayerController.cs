@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
             RaycastHit hit;
             if(Physics.Raycast(ray,out hit))
             {
-                if (hit.collider)
+                if (hit.collider.tag.Equals("move"))
                 {
                    newposition = hit.collider.transform.position;
                 }
