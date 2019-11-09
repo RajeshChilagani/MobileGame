@@ -9,13 +9,24 @@ public class EnemyController : MonoBehaviour
     Vector2 maxTopPosition, maxBottomPosition;
     bool movingTop;
     bool movingBottom;
+    public Vector2 dynamic;
+    public bool movetop;
     void Start()
     {
         enemyRigidBody = GetComponent<Rigidbody2D>();
-        maxTopPosition = enemyRigidBody.position + new Vector2(0, 2);
-        maxBottomPosition = enemyRigidBody.position + new Vector2(0, -2);
-        movingTop = true;
-        movingBottom = false;
+        maxTopPosition = enemyRigidBody.position +dynamic;
+        maxBottomPosition = enemyRigidBody.position - dynamic;
+        if(movetop)
+        {
+            movingTop = true;
+            movingBottom = false;
+        }
+        else
+        {
+            movingTop = false;
+            movingBottom = true;
+        }
+      
     }
 
     // Update is called once per frame

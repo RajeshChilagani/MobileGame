@@ -20,7 +20,7 @@ public class EnemyRange : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Player"))
         {
-           
+            collision.gameObject.transform.GetChild(0).name = "remove";
             collision.gameObject.transform.GetChild(0).parent = null;
             canvas.enabled = true;
             Destroy(collision.gameObject);
