@@ -9,7 +9,7 @@ public class UI : MonoBehaviour
     public Canvas canvas;
     void Start()
     {
-        
+        canvas.enabled = false;
     }
 
     // Update is called once per frame
