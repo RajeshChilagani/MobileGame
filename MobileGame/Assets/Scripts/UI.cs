@@ -7,8 +7,10 @@ public class UI : MonoBehaviour
     // Start is called before the first frame update
     public GameObject player;
     public Canvas canvas;
+    public int birdCount;
     void Start()
     {
+        birdCount = 0;
         canvas.enabled = false;
     }
 

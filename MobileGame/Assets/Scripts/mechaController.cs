@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class mechaController : MonoBehaviour
 {
-    private bool isMechaEnabled = false; 
+
+    public bool isBirdInCage;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,41 +15,81 @@ public class mechaController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        if(gameObject.name == "RotatingPlatform")
-        {
-            if (isMechaEnabled && Input.GetMouseButtonDown(0))
-            {
-                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Vector2 mousePos2D = new Vector2(mousePosition.x, mousePosition.y);
-                RaycastHit2D hit = Physics2D.Raycast(mousePos2D,Vector2.zero);
+        
+    }
 
-                
-                    if (hit.collider != null && hit.transform.name == "RotatingPlatform")
-                    {
-                        Debug.Log("My object is clicked by mouse");
-                        transform.Rotate(new Vector3(0, 0, 90));
-                    }
-            }
-        }
-        else if(gameObject.name == "TV")
+    public void withChildMecha()
+    {
+        if (gameObject.tag == "MechaRotatingPlatform")
         {
-            if (isMechaEnabled && Input.GetMouseButtonDown(0))
+            /* if (Input.GetMouseButtonDown(0))
+             {
+                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                 Vector2 mousePos2D = new Vector2(mousePosition.x, mousePosition.y);
+                 RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+
+
+                 if (hit.collider != null && hit.collider.tag == "Mecha")
+                 {
+                     Debug.Log("My object is clicked by mouse");
+                     hit.transform.Rotate(new Vector3(0, 0, 90));
+                 }
+             }*/
+
+            //rotate clockwise
+
+            gameObject.transform.Rotate(new Vector3(0, 0, -90));
+        }
+        else if (gameObject.tag == "MechaTV")
+        {
+            if (Input.GetMouseButtonDown(0))
             {
                 Destroy(gameObject.GetComponent<Collider2D>());
             }
         }
-        else if (gameObject.name == "Boiler")
+        else if (gameObject.tag == "MechaBoiler")
         {
-            if (isMechaEnabled && Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 Destroy(gameObject.GetComponent<Collider2D>());
             }
         }
     }
-
-    public void switchMechaAbility()
+    public void withoutChildMecha()
     {
-        isMechaEnabled = !isMechaEnabled;
-        Debug.Log(isMechaEnabled);
+        if (gameObject.tag == "MechaRotatingPlatform")
+        {
+            /* if (Input.GetMouseButtonDown(0))
+             {
+                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                 Vector2 mousePos2D = new Vector2(mousePosition.x, mousePosition.y);
+                 RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+
+
+                 if (hit.collider != null && hit.collider.tag == "Mecha")
+                 {
+                     Debug.Log("My object is clicked by mouse");
+                     hit.transform.Rotate(new Vector3(0, 0, 90));
+                 }
+             }*/
+
+            //rotate anticlockwise
+
+            gameObject.transform.Rotate(new Vector3(0, 0, 90));
+        }
+        else if (gameObject.tag == "MechaTV")
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Destroy(gameObject.GetComponent<Collider2D>());
+            }
+        }
+        else if (gameObject.tag == "MechaBoiler")
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Destroy(gameObject.GetComponent<Collider2D>());
+            }
+        }
     }
 }

@@ -6,15 +6,15 @@ public class TapCheck : MonoBehaviour
 {
     public GameObject cagedBirdObject;
 
-    private int lives = 2;
+    private int lives = 1;
     private int raycastDistance = 10;
-    private GameObject playerGameObject;
+    private GameObject uIGameObject;
     public GameObject connectedMechanism;
-    private Collider2D collider;
+    private new Collider2D collider;
 
     void Start()
     {
-        playerGameObject = GameObject.Find("Player");
+        uIGameObject = GameObject.Find("UI");
         collider = gameObject.GetComponent<Collider2D>();
     }
     void Update()
@@ -47,19 +47,27 @@ public class TapCheck : MonoBehaviour
                    (hitLeft.collider != null && hitLeft.collider.tag == "Player") || (hitRight.collider != null && hitRight.collider.tag == "Player"))
                 {
                     Debug.Log("test");
-                   lives--;
+                    lives--;
                 }
 
                 
                 if (lives == 0)
                 {
-                    // playerGameObject.GetComponent<PlayerManager>().birdsCollected++;
                     mechaController MC = connectedMechanism.GetComponent<mechaController>();
-                    MC.switchMechaAbility();
                     Debug.Log("switched");
-                    //bird collected
-                    Destroy(gameObject);
-                    Destroy(cagedBirdObject);
+                    GameObject childBirdObject = gameObject.transform.GetChild(0).gameObject;
+                    if (childBirdObject.activeSelf)
+                    {
+                        childBirdObject.SetActive(false);
+                        uIGameObject.GetComponent<UI>().birdCount--;
+                        MC.withoutChildMecha();
+                    }
+                    else
+                    {
+                        childBirdObject.SetActive(true);
+                        uIGameObject.GetComponent<UI>().birdCount++;
+                        MC.withChildMecha();
+                    }
                     lives = 1;
                 }
             }
