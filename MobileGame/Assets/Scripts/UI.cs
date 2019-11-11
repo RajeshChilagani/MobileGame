@@ -5,6 +5,7 @@ using UnityEngine;
 public class UI : MonoBehaviour
 {
     // Start is called before the first frame update
+    public GameObject startposition;
     public GameObject player;
     public Canvas canvas;
     public int birdCount;
@@ -22,7 +23,7 @@ public class UI : MonoBehaviour
    public void restart()
     {
 
-        Instantiate(player,Vector2.zero,Quaternion.identity);
+        Instantiate(player,startposition.transform.position,Quaternion.identity);
         Destroy(GameObject.Find("remove"));
         canvas.enabled = false;
 

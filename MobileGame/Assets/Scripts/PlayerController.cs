@@ -5,14 +5,13 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
-    Vector2 position;
     Rigidbody2D playerRigidBody;
     Vector2 oldposition, newposition;
     public Animator animator;
     void Start()
     {
         playerRigidBody = GetComponent<Rigidbody2D>();
-        playerRigidBody.position = newposition;
+        newposition = transform.position;
 
     }
 
