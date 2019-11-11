@@ -26,7 +26,7 @@ public class mechaController : MonoBehaviour
                     if (hit.collider != null && hit.transform.name == "RotatingPlatform")
                     {
                         Debug.Log("My object is clicked by mouse");
-                        transform.Rotate(new Vector3(0, 0, 90));
+                        hit.transform.Rotate(new Vector3(0, 0, 90));
                     }
             }
         }
