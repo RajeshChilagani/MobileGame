@@ -27,26 +27,31 @@ public class TapCheck : MonoBehaviour
             Vector2 mousePos2D = new Vector2(mousePosition.x, mousePosition.y);
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            if (hit.collider != null && hit.collider.tag == "cage")
+            if (hit.collider != null && hit.collider.tag == "cage" && gameObject.transform.name == hit.collider.name)
             {
-                Debug.Log("hit cage");
+                //Debug.Log("hit cage");
+                //Debug.Log(gameObject.transform.position);
+                //Debug.Log(collider.bounds.extents);
                 //ContactFilter2D filter = new ContactFilter2D();
                 // Cast a ray straight on all four directions
-                RaycastHit2D hitDown = Physics2D.Raycast(new Vector2 (transform.position.x, transform.position.y + collider.bounds.extents.y) , Vector2.down, raycastDistance);
-                RaycastHit2D hitLeft = Physics2D.Raycast(new Vector2(transform.position.x - collider.bounds.extents.x, transform.position.y), Vector2.left, raycastDistance);
-                RaycastHit2D hitRight = Physics2D.Raycast(new Vector2(transform.position.x + collider.bounds.extents.x, transform.position.y), Vector2.right, raycastDistance);
-                RaycastHit2D hitUp = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - collider.bounds.extents.y), Vector2.up, raycastDistance);
+                RaycastHit2D hitDown = Physics2D.Raycast(new Vector2 (gameObject.transform.position.x, gameObject.transform.position.y - collider.bounds.extents.y - 1) , Vector2.up, raycastDistance);
+                //Debug.DrawRay(new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - collider.bounds.extents.y,0),Vector2.down,Color.red,30.0f);
+                //Debug.DrawLine(new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - collider.bounds.extents.y, 0), new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - collider.bounds.extents.y - 2, 0),Color.red,30.0f);
+                RaycastHit2D hitLeft = Physics2D.Raycast(new Vector2(gameObject.transform.position.x + collider.bounds.extents.x + 0.5f, gameObject.transform.position.y), Vector2.right, raycastDistance);
+                Debug.DrawRay(new Vector3(gameObject.transform.position.x + collider.bounds.extents.x + 1, gameObject.transform.position.y, 0), Vector2.right, Color.red, 30.0f);
+                RaycastHit2D hitRight = Physics2D.Raycast(new Vector2(gameObject.transform.position.x - collider.bounds.extents.x - 0.5f, gameObject.transform.position.y), Vector2.left, raycastDistance);
+                RaycastHit2D hitUp = Physics2D.Raycast(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + collider.bounds.extents.y + 1), Vector2.down, raycastDistance);
 
-                Debug.Log(hitDown.collider.tag);
-                Debug.Log(hitUp.collider.tag);
-                Debug.Log(hitLeft.collider.tag);
-                Debug.Log(hitRight.collider.tag);
+                //Debug.Log(hitDown.collider.name);
+                //Debug.Log(hitUp.collider.name);
+                //Debug.Log(hitLeft.collider.name);
+                //Debug.Log(hitRight.collider.name);
 
                 // If it hits player while touching...
                 if ((hitDown.collider != null && hitDown.collider.tag == "Player") || (hitUp.collider != null && hitUp.collider.tag == "Player") ||
                    (hitLeft.collider != null && hitLeft.collider.tag == "Player") || (hitRight.collider != null && hitRight.collider.tag == "Player"))
                 {
-                    Debug.Log("test");
+                    //Debug.Log("test");
                     lives--;
                 }
 
@@ -59,13 +64,15 @@ public class TapCheck : MonoBehaviour
                     if (childBirdObject.activeSelf)
                     {
                         childBirdObject.SetActive(false);
-                        uIGameObject.GetComponent<UI>().birdCount--;
+                        uIGameObject.GetComponent<UI>().birdCount++;
+                        Debug.Log(uIGameObject.GetComponent<UI>().birdCount);
                         MC.withoutChildMecha();
                     }
                     else
                     {
                         childBirdObject.SetActive(true);
-                        uIGameObject.GetComponent<UI>().birdCount++;
+                        uIGameObject.GetComponent<UI>().birdCount--;
+                        Debug.Log(uIGameObject.GetComponent<UI>().birdCount);
                         MC.withChildMecha();
                     }
                     lives = 1;

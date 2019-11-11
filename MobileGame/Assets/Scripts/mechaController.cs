@@ -22,23 +22,9 @@ public class mechaController : MonoBehaviour
     {
         if (gameObject.tag == "MechaRotatingPlatform")
         {
-            /* if (Input.GetMouseButtonDown(0))
-             {
-                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                 Vector2 mousePos2D = new Vector2(mousePosition.x, mousePosition.y);
-                 RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-
-
-                 if (hit.collider != null && hit.collider.tag == "Mecha")
-                 {
-                     Debug.Log("My object is clicked by mouse");
-                     hit.transform.Rotate(new Vector3(0, 0, 90));
-                 }
-             }*/
-
             //rotate clockwise
 
-            gameObject.transform.Rotate(new Vector3(0, 0, -90));
+            gameObject.transform.Rotate(new Vector3(0, 0, 90));
                 
             
         }
@@ -54,36 +40,25 @@ public class mechaController : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 Destroy(gameObject.GetComponent<Collider2D>());
+                //stop blowing steam
+                gameObject.transform.GetChild(0).gameObject.SetActive(false);
             }
         }
     }
     public void withoutChildMecha()
     {
+        Debug.Log("Start");
         if (gameObject.tag == "MechaRotatingPlatform")
         {
-            /* if (Input.GetMouseButtonDown(0))
-             {
-                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                 Vector2 mousePos2D = new Vector2(mousePosition.x, mousePosition.y);
-                 RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-
-
-                 if (hit.collider != null && hit.collider.tag == "Mecha")
-                 {
-                     Debug.Log("My object is clicked by mouse");
-                     hit.transform.Rotate(new Vector3(0, 0, 90));
-                 }
-             }*/
-
             //rotate anticlockwise
-
-            gameObject.transform.Rotate(new Vector3(0, 0, 90));
+            gameObject.transform.Rotate(new Vector3(0, 0, -90));
         }
         else if (gameObject.tag == "MechaTV")
         {
             if (Input.GetMouseButtonDown(0))
             {
                 Destroy(gameObject.GetComponent<Collider2D>());
+                
             }
         }
         else if (gameObject.tag == "MechaBoiler")
@@ -91,6 +66,9 @@ public class mechaController : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 Destroy(gameObject.GetComponent<Collider2D>());
+                //start blowing steam
+                Debug.Log("start blowing steam");
+                gameObject.transform.GetChild(0).gameObject.SetActive(true);
             }
         }
     }
