@@ -39,6 +39,8 @@ public class mechaController : MonoBehaviour
             //rotate clockwise
 
             gameObject.transform.Rotate(new Vector3(0, 0, -90));
+                
+            
         }
         else if (gameObject.tag == "MechaTV")
         {
