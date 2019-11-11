@@ -40,12 +40,7 @@ public class mechaController : MonoBehaviour
 
             gameObject.transform.Rotate(new Vector3(0, 0, -90));
                 
-                    if (hit.collider != null && hit.transform.name == "RotatingPlatform")
-                    {
-                        Debug.Log("My object is clicked by mouse");
-                        hit.transform.Rotate(new Vector3(0, 0, 90));
-                    }
-            }
+            
         }
         else if (gameObject.tag == "MechaTV")
         {
