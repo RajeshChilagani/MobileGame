@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class mechaController : MonoBehaviour
 {
-
+   
+    public bool startAnimation;
     public bool isBirdInCage;
     private Sprite tvSprite;
+    Animator Boiler;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Boiler = GetComponent<Animator>();
+        Boiler.SetBool("isTurnedOn", startAnimation);
     }
 
     // Update is called once per frame
@@ -24,9 +27,7 @@ public class mechaController : MonoBehaviour
         if (gameObject.tag == "MechaRotatingPlatform")
         {
             //rotate clockwise
-
-            gameObject.transform.Rotate(new Vector3(0, 0, -90));
-                
+            gameObject.transform.Rotate(new Vector3(0, 0, -90));       
             
         }
         else if (gameObject.tag == "MechaTV")
@@ -43,7 +44,9 @@ public class mechaController : MonoBehaviour
             {
                 Destroy(gameObject.GetComponent<Collider2D>());
                 //stop blowing steam
-                gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                startAnimation = false;
+                Boiler.SetBool("isTurnedOn", startAnimation);
+                gameObject.transform.GetChild(0).gameObject.SetActive(false);
             }
         }
     }
@@ -69,8 +72,10 @@ public class mechaController : MonoBehaviour
             {
                 Destroy(gameObject.GetComponent<Collider2D>());
                 //start blowing steam
+                startAnimation = true;
+                Boiler.SetBool("isTurnedOn", startAnimation);
                 Debug.Log("start blowing steam");
-                gameObject.transform.GetChild(0).gameObject.SetActive(false);
+                gameObject.transform.GetChild(0).gameObject.SetActive(true);
             }
         }
     }

@@ -66,14 +66,14 @@ public class TapCheck : MonoBehaviour
                         childBirdObject.SetActive(false);
                         uIGameObject.GetComponent<UI>().birdCount++;
                         Debug.Log(uIGameObject.GetComponent<UI>().birdCount);
-                        MC.withoutChildMecha();
+                        MC.withChildMecha();
                     }
                     else
                     {
                         childBirdObject.SetActive(true);
                         uIGameObject.GetComponent<UI>().birdCount--;
                         Debug.Log(uIGameObject.GetComponent<UI>().birdCount);
-                        MC.withChildMecha();
+                        MC.withoutChildMecha();
                     }
                     lives = 1;
                 }
