@@ -319,6 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf0a9c07f3fe4714897c544b4f22d10e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startAnimation: 0
   isBirdInCage: 0
 --- !u!1 &4551757246590264541
 GameObject:
@@ -470,7 +471,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -3
-  m_Sprite: {fileID: 21300000, guid: 5b320a816bd3d364f8cdb61f9068e77b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 66e72ffadc49e1c4fbfe71acf32df6fc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

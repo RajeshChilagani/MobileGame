@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1678624126039826223}
   - component: {fileID: 1678624126039826222}
   - component: {fileID: 1678624126039826209}
-  - component: {fileID: 1678624126039826220}
+  - component: {fileID: 6222863380750668973}
   m_Layer: 0
   m_Name: CageSprite
   m_TagString: cage
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1678624126039826208}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.215, y: 3.536, z: 0}
-  m_LocalScale: {x: 0.28133637, y: 0.16583616, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1678624126887540654}
   m_Father: {fileID: 0}
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7ee49f378f1f2cd42acc0a16a2873c8a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9b27f521fc13dd04a9db01d2703b96f5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cagedBirdObject: {fileID: 1678624126887540641}
   connectedMechanism: {fileID: 0}
---- !u!61 &1678624126039826220
+--- !u!61 &6222863380750668973
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,14 +114,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 5.12}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.12, y: 5.12}
+  m_Size: {x: 4, y: 4}
   m_EdgeRadius: 0
 --- !u!1 &1678624126887540641
 GameObject:
@@ -150,7 +150,7 @@ Transform:
   m_GameObject: {fileID: 1678624126887540641}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.067, y: 0.396, z: 0}
-  m_LocalScale: {x: 1.7852279, y: 2.5337758, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1678624126039826223}
   m_RootOrder: 0
@@ -192,7 +192,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 586c173044c7f554b9c231e12c16d084, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
