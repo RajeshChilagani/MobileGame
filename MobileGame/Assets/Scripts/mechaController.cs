@@ -6,6 +6,7 @@ public class mechaController : MonoBehaviour
 {
 
     public bool isBirdInCage;
+    private Sprite tvSprite;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +25,7 @@ public class mechaController : MonoBehaviour
         {
             //rotate clockwise
 
-            gameObject.transform.Rotate(new Vector3(0, 0, 90));
+            gameObject.transform.Rotate(new Vector3(0, 0, -90));
                 
             
         }
@@ -32,7 +33,8 @@ public class mechaController : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Destroy(gameObject.GetComponent<Collider2D>());
+                tvSprite =  Resources.Load<Sprite>("TV_on_2");
+                gameObject.GetComponent<SpriteRenderer>().sprite = tvSprite;
             }
         }
         else if (gameObject.tag == "MechaBoiler")
@@ -41,7 +43,7 @@ public class mechaController : MonoBehaviour
             {
                 Destroy(gameObject.GetComponent<Collider2D>());
                 //stop blowing steam
-                gameObject.transform.GetChild(0).gameObject.SetActive(false);
+                gameObject.transform.GetChild(0).gameObject.SetActive(true);
             }
         }
     }
@@ -51,14 +53,14 @@ public class mechaController : MonoBehaviour
         if (gameObject.tag == "MechaRotatingPlatform")
         {
             //rotate anticlockwise
-            gameObject.transform.Rotate(new Vector3(0, 0, -90));
+            gameObject.transform.Rotate(new Vector3(0, 0, 90));
         }
         else if (gameObject.tag == "MechaTV")
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Destroy(gameObject.GetComponent<Collider2D>());
-                
+                tvSprite = Resources.Load<Sprite>("TV_off");
+                gameObject.GetComponent<SpriteRenderer>().sprite = tvSprite;
             }
         }
         else if (gameObject.tag == "MechaBoiler")
@@ -68,7 +70,7 @@ public class mechaController : MonoBehaviour
                 Destroy(gameObject.GetComponent<Collider2D>());
                 //start blowing steam
                 Debug.Log("start blowing steam");
-                gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                gameObject.transform.GetChild(0).gameObject.SetActive(false);
             }
         }
     }
