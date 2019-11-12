@@ -27,7 +27,7 @@ public class mechaController : MonoBehaviour
         if (gameObject.tag == "MechaRotatingPlatform")
         {
             //rotate clockwise
-            gameObject.transform.Rotate(new Vector3(0, 0, -90));       
+            gameObject.transform.Rotate(new Vector3(0, 0, 90));       
             
         }
         else if (gameObject.tag == "MechaTV")
@@ -56,7 +56,7 @@ public class mechaController : MonoBehaviour
         if (gameObject.tag == "MechaRotatingPlatform")
         {
             //rotate anticlockwise
-            gameObject.transform.Rotate(new Vector3(0, 0, 90));
+            gameObject.transform.Rotate(new Vector3(0, 0, -90));
         }
         else if (gameObject.tag == "MechaTV")
         {
