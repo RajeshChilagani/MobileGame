@@ -13,7 +13,9 @@ public class mechaController : MonoBehaviour
     void Start()
     {
         Boiler = GetComponent<Animator>();
+        if(Boiler)
         Boiler.SetBool("isTurnedOn", startAnimation);
+        Boiler.SetBool("TvOn", startAnimation);
     }
 
     // Update is called once per frame
@@ -27,15 +29,18 @@ public class mechaController : MonoBehaviour
         if (gameObject.tag == "MechaRotatingPlatform")
         {
             //rotate clockwise
-            gameObject.transform.Rotate(new Vector3(0, 0, 90));       
+            gameObject.transform.Rotate(new Vector3(0, 0, -90));       
             
         }
         else if (gameObject.tag == "MechaTV")
         {
             if (Input.GetMouseButtonDown(0))
             {
-                tvSprite =  Resources.Load<Sprite>("TV_on_2");
-                gameObject.GetComponent<SpriteRenderer>().sprite = tvSprite;
+                if (Boiler)
+                {
+                    startAnimation = true;
+                    Boiler.SetBool("TvOn", startAnimation);
+                }
             }
         }
         else if (gameObject.tag == "MechaBoiler")
@@ -44,26 +49,33 @@ public class mechaController : MonoBehaviour
             {
                 Destroy(gameObject.GetComponent<Collider2D>());
                 //stop blowing steam
-                startAnimation = false;
-                Boiler.SetBool("isTurnedOn", startAnimation);
-                gameObject.transform.GetChild(0).gameObject.SetActive(false);
+                if(Boiler)
+                {
+                    startAnimation = true;
+                    Boiler.SetBool("isTurnedOn", startAnimation);
+                }
+               
+                gameObject.transform.GetChild(0).gameObject.SetActive(true);
             }
         }
     }
-    public void withoutChildMecha()
+    public void withoutChildMecha()//bird is not in cage
     {
         Debug.Log("Start");
         if (gameObject.tag == "MechaRotatingPlatform")
         {
             //rotate anticlockwise
-            gameObject.transform.Rotate(new Vector3(0, 0, -90));
+            gameObject.transform.Rotate(new Vector3(0, 0, 90));
         }
         else if (gameObject.tag == "MechaTV")
         {
             if (Input.GetMouseButtonDown(0))
             {
-                tvSprite = Resources.Load<Sprite>("TV_off");
-                gameObject.GetComponent<SpriteRenderer>().sprite = tvSprite;
+                if (Boiler)
+                {
+                    startAnimation = false;
+                    Boiler.SetBool("TvOn", startAnimation);
+                }
             }
         }
         else if (gameObject.tag == "MechaBoiler")
@@ -72,10 +84,14 @@ public class mechaController : MonoBehaviour
             {
                 Destroy(gameObject.GetComponent<Collider2D>());
                 //start blowing steam
-                startAnimation = true;
-                Boiler.SetBool("isTurnedOn", startAnimation);
+                if(Boiler)
+                {
+                    startAnimation = false;
+                    Boiler.SetBool("isTurnedOn", startAnimation);
+                }
+               
                 Debug.Log("start blowing steam");
-                gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                gameObject.transform.GetChild(0).gameObject.SetActive(false);
             }
         }
     }
