@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class UI : MonoBehaviour
 {
@@ -8,24 +10,47 @@ public class UI : MonoBehaviour
     public GameObject startposition;
     public GameObject player;
     public Canvas canvas;
+    Transform UIB;
+    Transform UIT;
     public int birdCount;
+    public List<Image> birds;
+    int UIBirds = 4;
+    
     void Start()
     {
         birdCount = 0;
-        canvas.enabled = false;
+        UIB = canvas.transform.Find("Button");
+        UIT = canvas.transform.Find("GameOver");
+        UIB.gameObject.active = false;
+        UIT.gameObject.active = false;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log("birdcount is" + birdCount);
+        int i = birdCount;
+        while(i>0)
+        {
+            birds[i-1].color = Color.white;
+            i--;
+        }
+        int j = UIBirds;
+        while (j> birdCount)
+        {
+            birds[j - 1].color = Color.black;
+            j--;
+        }
+       
+          
     }
    public void restart()
     {
 
         Instantiate(player,startposition.transform.position,Quaternion.identity);
         Destroy(GameObject.Find("remove"));
-        canvas.enabled = false;
-
+        UIB.gameObject.active = false;
+        UIT.gameObject.active = false;
     }
 }

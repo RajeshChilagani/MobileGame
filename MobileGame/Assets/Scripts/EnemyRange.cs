@@ -1,14 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using TMPro; 
 public class EnemyRange : MonoBehaviour
 {
     public Canvas canvas;
+    Transform UIB;
+    Transform UIT;
     // Start is called before the first frame update
     void Start()
     {
-        canvas.enabled = false;
+        UIB = canvas.transform.Find("Button");
+        UIT = canvas.transform.Find("GameOver");
+        UIB.gameObject.active = false;
+        UIT.gameObject.active = false;
     }
 
     // Update is called once per frame
@@ -22,7 +28,8 @@ public class EnemyRange : MonoBehaviour
         {
             collision.gameObject.transform.GetChild(0).name = "remove";
             collision.gameObject.transform.GetChild(0).parent = null;
-            canvas.enabled = true;
+            UIB.gameObject.active = true;
+            UIT.gameObject.active = true;
             Destroy(collision.gameObject);
         }
     }
