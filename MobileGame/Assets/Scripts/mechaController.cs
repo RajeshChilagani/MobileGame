@@ -8,14 +8,33 @@ public class mechaController : MonoBehaviour
     public bool startAnimation;
     public bool isBirdInCage;
     private Sprite tvSprite;
-    Animator Boiler;
+    Animator animator;
+    AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
-        Boiler = GetComponent<Animator>();
-        if(Boiler)
-        Boiler.SetBool("isTurnedOn", startAnimation);
-        Boiler.SetBool("TvOn", startAnimation);
+
+        animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+       
+        if (animator)
+        {
+            animator.SetBool("isTurnedOn", startAnimation);
+            animator.SetBool("TvOn", startAnimation);
+        }
+        if(audioSource)
+        {
+            audioSource.loop = true;
+            if (startAnimation)
+            {
+                audioSource.Play();
+            }
+            else
+            {
+                audioSource.Stop();
+            }
+        }
+        
     }
 
     // Update is called once per frame
@@ -36,10 +55,11 @@ public class mechaController : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if (Boiler)
+                if (animator)
                 {
                     startAnimation = true;
-                    Boiler.SetBool("TvOn", startAnimation);
+                    audioSource.Play();
+                    animator.SetBool("TvOn", startAnimation);
                 }
             }
         }
@@ -49,10 +69,11 @@ public class mechaController : MonoBehaviour
             {
                 Destroy(gameObject.GetComponent<Collider2D>());
                 //stop blowing steam
-                if(Boiler)
+                if(animator)
                 {
                     startAnimation = true;
-                    Boiler.SetBool("isTurnedOn", startAnimation);
+                    audioSource.Play();
+                    animator.SetBool("isTurnedOn", startAnimation);
                 }
                
                 gameObject.transform.GetChild(0).gameObject.SetActive(true);
@@ -71,10 +92,11 @@ public class mechaController : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if (Boiler)
+                if (animator)
                 {
                     startAnimation = false;
-                    Boiler.SetBool("TvOn", startAnimation);
+                    audioSource.Stop();
+                    animator.SetBool("TvOn", startAnimation);
                 }
             }
         }
@@ -84,10 +106,11 @@ public class mechaController : MonoBehaviour
             {
                 Destroy(gameObject.GetComponent<Collider2D>());
                 //start blowing steam
-                if(Boiler)
+                if(animator)
                 {
                     startAnimation = false;
-                    Boiler.SetBool("isTurnedOn", startAnimation);
+                    audioSource.Stop();
+                    animator.SetBool("isTurnedOn", startAnimation);
                 }
                
                 Debug.Log("start blowing steam");
