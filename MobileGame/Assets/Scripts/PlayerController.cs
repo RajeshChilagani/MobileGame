@@ -9,19 +9,26 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D playerRigidBody;
     Vector2 oldposition, newposition;
     public Animator animator;
+    AudioSource audioSource;
     void Start()
     {
         playerRigidBody = GetComponent<Rigidbody2D>();
         transform.position = GameObject.Find("playerstartPosition").transform.position;
         newposition = transform.position;
-
+        audioSource=GetComponent<AudioSource>();
+        if (audioSource)
+        {
+            audioSource.loop = true;
+            audioSource.volume = 0.3f;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        
       
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
