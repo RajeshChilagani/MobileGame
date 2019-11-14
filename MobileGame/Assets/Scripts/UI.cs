@@ -10,19 +10,27 @@ public class UI : MonoBehaviour
     public GameObject startposition;
     public GameObject player;
     public Canvas canvas;
-    Transform UIB;
-    Transform UIT;
     public int birdCount;
+    public bool isStarted = false;
     public List<Image> birds;
     int UIBirds = 4;
     public bool noMoreBirds;
     public int maxBirdCount;
     
+    Transform UIB;
+    Transform UIT;
+    Transform Images;
+    Transform StartScreen;
+
+
     void Start()
     {
         birdCount = 0;
         UIB = canvas.transform.Find("Button");
         UIT = canvas.transform.Find("GameOver");
+        Images= canvas.transform.Find("images");
+        StartScreen = canvas.transform.Find("StartScreen");
+        Images.gameObject.active = false;
         UIB.gameObject.active = false;
         UIT.gameObject.active = false;
         noMoreBirds = true;
@@ -64,5 +72,11 @@ public class UI : MonoBehaviour
             GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 200f, 200f), "Cannot Add more birds" +
                 "");
         }
+    }
+    public void startPlay()
+    {
+        StartScreen.gameObject.active = false;
+        Images.gameObject.active = true;
+        isStarted = true;
     }
 }

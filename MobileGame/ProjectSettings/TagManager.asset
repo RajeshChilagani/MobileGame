@@ -12,6 +12,7 @@ TagManager:
   - MechaBoiler
   - gameoverUI
   - FinalCage
+  - UITag
   layers:
   - Default
   - TransparentFX

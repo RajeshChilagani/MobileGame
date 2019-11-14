@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class mechaController : MonoBehaviour
 {
-   
+    
     public bool startAnimation;
     public bool isBirdInCage;
     private Sprite tvSprite;
     Animator animator;
     AudioSource audioSource;
+    GameObject UIObject;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        UIObject = GameObject.FindGameObjectWithTag("UITag");
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
        
@@ -25,22 +27,15 @@ public class mechaController : MonoBehaviour
         if(audioSource)
         {
             audioSource.loop = true;
-            if (startAnimation)
-            {
-                audioSource.Play();
-            }
-            else
-            {
-                audioSource.Stop();
-            }
+
         }
         
     }
 
     // Update is called once per frame
     void Update()
-    {   
-        
+    {
+
     }
 
     public void withChildMecha()
