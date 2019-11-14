@@ -24,10 +24,12 @@ public class GateController : MonoBehaviour
     public void GateOpen()
     {
         animator.SetBool("isOpen", true);
+        isDoorClosed = false;
     }
 
     public void GateClose()
     {
+        isDoorClosed = true;
         animator.SetBool("isOpen", false);
     }
 }

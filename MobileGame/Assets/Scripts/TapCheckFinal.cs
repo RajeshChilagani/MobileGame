@@ -56,8 +56,10 @@ public class TapCheckFinal : MonoBehaviour
                     GameObject childBirdObject = gameObject.transform.GetChild(0).gameObject;
                     if (childBirdObject.activeSelf)
                     {
+                        
                         childBirdObject.SetActive(false);
                         gateConroller.birdInCage--;
+                        Debug.Log("birds in cage :" + gateConroller.birdInCage);
                         if (gateConroller.isDoorClosed == false && gateConroller.birdInCage < 3)
                         {
                             gateConroller.GateClose();
@@ -67,11 +69,14 @@ public class TapCheckFinal : MonoBehaviour
                     {
                         childBirdObject.SetActive(true);
                         gateConroller.birdInCage++;
+                        Debug.Log("birds in cage :" + gateConroller.birdInCage);
                         if (gateConroller.birdInCage == 3)
                         {
                             gateConroller.GateOpen();
                         }
                     }
+
+                    lives = 1;
 
 
                 }
