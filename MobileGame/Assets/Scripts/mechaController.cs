@@ -26,8 +26,16 @@ public class mechaController : MonoBehaviour
         }
         if(audioSource)
         {
+            audioSource.Stop();
             audioSource.loop = true;
-
+            if (startAnimation)
+            {
+                audioSource.Play();
+            }
+            else
+            {
+                audioSource.Stop();
+            }
         }
         
     }
@@ -35,7 +43,7 @@ public class mechaController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     public void withChildMecha()
