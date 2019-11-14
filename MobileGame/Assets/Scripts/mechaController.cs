@@ -74,6 +74,11 @@ public class mechaController : MonoBehaviour
                 gameObject.transform.GetChild(0).gameObject.SetActive(true);
             }
         }
+        else if (gameObject.tag.Equals("FinalGate"))
+        {
+            GetComponent<gatecheck>().birdCount++;
+           
+        }
     }
     public void withoutChildMecha()//bird is not in cage
     {
@@ -111,6 +116,11 @@ public class mechaController : MonoBehaviour
                 Debug.Log("start blowing steam");
                 gameObject.transform.GetChild(0).gameObject.SetActive(false);
             }
+        }
+        else if (gameObject.tag.Equals("FinalGate"))
+        {
+            GetComponent<gatecheck>().birdCount--;
+            
         }
     }
 }

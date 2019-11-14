@@ -65,14 +65,14 @@ public class UI : MonoBehaviour
         UIT.gameObject.active = false;
     }
 
-    public void OnGui()
-    {
-        if (!noMoreBirds)
-        {
-            GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 200f, 200f), "Cannot Add more birds" +
-                "");
-        }
-    }
+    //public void OnGui()
+    //{
+    //    if (!noMoreBirds)
+    //    {
+    //        GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 200f, 200f), "Cannot Add more birds" +
+    //            "");
+    //    }
+    //}
     public void startPlay()
     {
         StartScreen.gameObject.active = false;

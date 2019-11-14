@@ -13,6 +13,7 @@ TagManager:
   - gameoverUI
   - FinalCage
   - UITag
+  - FinalGate
   layers:
   - Default
   - TransparentFX
