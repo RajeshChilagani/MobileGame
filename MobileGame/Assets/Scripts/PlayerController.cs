@@ -10,12 +10,14 @@ public class PlayerController : MonoBehaviour
     Vector2 oldposition, newposition;
     public Animator animator;
     AudioSource audioSource;
+    GameObject UIObject;
     void Start()
     {
         playerRigidBody = GetComponent<Rigidbody2D>();
         transform.position = GameObject.Find("playerstartPosition").transform.position;
         newposition = transform.position;
-        audioSource=GetComponent<AudioSource>();
+        UIObject = GameObject.FindGameObjectWithTag("UITag");
+        audioSource =GetComponent<AudioSource>();
         if (audioSource)
         {
             audioSource.loop = true;
@@ -26,8 +28,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-      
+        if (UIObject.GetComponent<UI>().isStarted)
+        {
+            StartCoroutine("startCameraMove");
+
+        }
+       
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -48,6 +54,14 @@ public class PlayerController : MonoBehaviour
         else
         {
             animator.SetBool("ismoving", true);
+        }
+    }
+    IEnumerator startCameraMove()
+    {
+        yield return new WaitForSeconds(2);
+        if (Camera.main.orthographicSize < 5)
+        {
+            Camera.main.orthographicSize += 0.5f * Time.deltaTime;
         }
     }
 }

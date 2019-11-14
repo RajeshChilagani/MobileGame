@@ -8,8 +8,13 @@ public class gatecheck : MonoBehaviour
     public int birdCount;
     private Animator animator;
     bool isDoorClosed;
+    Transform LevelFinish;
+    public Canvas canvas;
+
     void Start()
     {
+        LevelFinish = canvas.transform.Find("LEnd");
+        LevelFinish.gameObject.active = false;
         animator = GetComponent<Animator>();
         isDoorClosed = true;
     }
@@ -32,9 +37,16 @@ public class gatecheck : MonoBehaviour
         else
         {
             animator.SetBool("isOpen", true);
+            StartCoroutine("LF");
+
         }
 
 
+    }
+    IEnumerator LF()
+    {
+        yield return new WaitForSeconds(2);
+        LevelFinish.gameObject.active = true;
     }
 
 }
