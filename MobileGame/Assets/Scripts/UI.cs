@@ -15,6 +15,8 @@ public class UI : MonoBehaviour
     public int birdCount;
     public List<Image> birds;
     int UIBirds = 4;
+    public bool noMoreBirds;
+    public int maxBirdCount;
     
     void Start()
     {
@@ -23,13 +25,14 @@ public class UI : MonoBehaviour
         UIT = canvas.transform.Find("GameOver");
         UIB.gameObject.active = false;
         UIT.gameObject.active = false;
+        noMoreBirds = true;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("birdcount is" + birdCount);
+        //Debug.Log("birdcount is" + birdCount);
         int i = birdCount;
         while(i>0)
         {
@@ -52,5 +55,14 @@ public class UI : MonoBehaviour
         Destroy(GameObject.Find("remove"));
         UIB.gameObject.active = false;
         UIT.gameObject.active = false;
+    }
+
+    public void OnGui()
+    {
+        if (!noMoreBirds)
+        {
+            GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 200f, 200f), "Cannot Add more birds" +
+                "");
+        }
     }
 }

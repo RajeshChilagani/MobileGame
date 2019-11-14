@@ -11,6 +11,7 @@ TagManager:
   - MechaTV
   - MechaBoiler
   - gameoverUI
+  - FinalCage
   layers:
   - Default
   - TransparentFX
